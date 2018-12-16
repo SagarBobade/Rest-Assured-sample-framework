@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="8726" started-at="2018-12-16T18:52:06Z" finished-at="2018-12-16T18:52:15Z">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="8726" started-at="2018-12-16T18:52:06Z" finished-at="2018-12-16T18:52:15Z">
+      <class name="javaTest.JavaTest">
+        <test-method status="PASS" signature="testResponseCode()[pri:0, instance:javaTest.JavaTest@23ceabc1]" name="testResponseCode" duration-ms="8701" started-at="2018-12-17T00:22:06Z" finished-at="2018-12-17T00:22:15Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testResponseCode -->
+      </class> <!-- javaTest.JavaTest -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>
