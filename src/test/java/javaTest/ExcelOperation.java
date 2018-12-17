@@ -30,31 +30,33 @@ public class ExcelOperation {
 			workbook = new HSSFWorkbook(inputStream);
 			HSSFSheet sheet = (HSSFSheet) workbook.getSheetAt(0);
 
-			System.out.println("Total APIs are : "+ sheet.getLastRowNum());
+			System.out.println("******************Total APIs are : "+ sheet.getLastRowNum()+" ******************");
 			for(int i=1; i<=sheet.getLastRowNum();i++) {
 				
 					reqUrl = sheet.getRow(i).getCell(1).toString();
 					method = sheet.getRow(i).getCell(2).toString();
 					
-					System.out.println("Processing "+ i +reqUrl+" "+method);
+					System.out.println("Processing "+i+") " +reqUrl+" "+method);
 					
 					//call to method which sends request
 					if(sendRequest.testResponseCode(reqUrl,sheet.getRow(i).getCell(2).toString(),Double.parseDouble(sheet.getRow(i).getCell(3).toString()))==0) {
 						FileOutputStream f2 = new FileOutputStream(file);
 						HSSFCell cell = sheet.getRow(i).createCell(4);
 						cell.setCellValue("PASS");
-						System.out.println("writing PASS"+cell.getRowIndex() +" : " +  cell.getColumnIndex());
+						System.out.println("PASS");
 						workbook.write(f2);
 						f2.close();
+						System.out.println("******************************************************");
 					}
 					else {
 						FileOutputStream f2 = new FileOutputStream(file);
 						HSSFCell cell = sheet.getRow(i).createCell(4);
+						System.out.println("FAIL");
 						cell.setCellValue("FAIL");
 						workbook.write(f2);
 						f2.close();
+						System.out.println("******************************************************");
 					}
-					
 			}
 		}
 	}
