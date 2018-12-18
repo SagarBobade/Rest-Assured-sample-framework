@@ -39,7 +39,8 @@ public class ExcelOperation {
 					System.out.println("Processing "+i+") " +reqUrl+" "+method);
 					
 					//call to method which sends request
-					if(sendRequest.testResponseCode(reqUrl,sheet.getRow(i).getCell(2).toString(),Double.parseDouble(sheet.getRow(i).getCell(3).toString()))==0) {
+					if(sendRequest.testResponseCode(reqUrl,sheet.getRow(i).getCell(2).toString(),Double.parseDouble(sheet.getRow(i).getCell(3).toString()), 
+							sheet.getRow(i).getCell(5).toString())==0) {
 						FileOutputStream f2 = new FileOutputStream(file);
 						HSSFCell cell = sheet.getRow(i).createCell(4);
 						cell.setCellValue("PASS");
