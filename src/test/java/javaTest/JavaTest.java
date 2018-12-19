@@ -2,23 +2,27 @@ package javaTest;
 
 import java.io.IOException;
 
-import org.testng.annotations.Test;
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.reporter.ExtentHtmlReporter;
 
-// framework to test whether any api call fail to response for what it is made.
 public class JavaTest {
 	
 	public ExcelOperation excelOp;
 
-	//TestNg will analyze for this annotation and execute script from here
-	@Test
-	public void testResponseCode() throws IOException {
-
-		//initializing imp variables
+	
+	public static void main(String args[]) throws IOException {
 		String filePath = "C:\\API-Test-Excel";
 		String fileName = "Test-Api.xls";
 		String sheetName = "Sheet1";
 		
-		ExcelOperation.readExcel(filePath, fileName, sheetName);
-
+		ExtentHtmlReporter reporter = new ExtentHtmlReporter("./Reports/firstReport.html");
+		ExtentReports extent = new ExtentReports();
+		extent.attachReporter(reporter);
+		
+		ExcelOperation.readExcel(filePath, fileName, sheetName, extent);
+		
 	}
+
+		
+
 }

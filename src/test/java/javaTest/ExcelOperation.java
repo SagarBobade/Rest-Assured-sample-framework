@@ -10,13 +10,14 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
 
+import com.aventstack.extentreports.ExtentReports;
+
 import io.restassured.response.Response;
 
 public class ExcelOperation {
 
-	public static void readExcel(String filePath, String fileName, String sheetName) throws IOException {
+	public static void readExcel(String filePath, String fileName, String sheetName, ExtentReports extent) throws IOException {
 
-		//initializing vars
 		File file = new File(filePath + "\\" + fileName);
 		FileInputStream inputStream = new FileInputStream(file);
 
@@ -38,9 +39,8 @@ public class ExcelOperation {
 					
 					System.out.println("Processing "+i+") " +reqUrl+" "+method);
 					
-					//call to method which sends request
 					if(sendRequest.testResponseCode(reqUrl,sheet.getRow(i).getCell(2).toString(),Double.parseDouble(sheet.getRow(i).getCell(3).toString()), 
-							sheet.getRow(i).getCell(5).toString())==0) {
+							sheet.getRow(i).getCell(5).toString(),Integer.valueOf((int) Math.round(Double.parseDouble(sheet.getRow(i).getCell(6).toString()))),extent)==0) {
 						FileOutputStream f2 = new FileOutputStream(file);
 						HSSFCell cell = sheet.getRow(i).createCell(4);
 						cell.setCellValue("PASS");
@@ -59,6 +59,7 @@ public class ExcelOperation {
 						System.out.println("******************************************************");
 					}
 			}
+			extent.flush();
 		}
 	}
 }

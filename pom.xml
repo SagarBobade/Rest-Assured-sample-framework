@@ -45,6 +45,11 @@
 			<version>20180130</version>
 		</dependency>
 
+		<dependency>
+			<groupId>com.aventstack</groupId>
+			<artifactId>extentreports</artifactId>
+			<version>3.1.5</version>
+		</dependency>
 
 	</dependencies>
 </project>
