@@ -16,8 +16,14 @@ import io.restassured.specification.RequestSpecification;
 public class sendRequest {
 
 	@Test
-	public static int testResponseCode(String reqUrl, String methodName, double expectedCode1, String jsonBody,
-			int expectedTime, ExtentReports extent) {
+	public static int testResponseCode(
+			String reqUrl, 
+			String methodName, 
+			double expectedCode1, 
+			String jsonBody,
+			int expectedTime, 
+			ExtentReports extent) 
+	{
 		System.out.println("method : " + methodName);
 		int expectedCode = Integer.valueOf((int) Math.round(expectedCode1));
 		System.out.println("expected code is :- " + expectedCode);
@@ -47,7 +53,7 @@ public class sendRequest {
 			code = resp.getStatusCode();
 
 		} else if (methodName.equalsIgnoreCase("delete")) {
-
+			
 			request.header("Content-Type", "application/json");
 			resp = request.delete();
 			code = resp.getStatusCode();
@@ -73,7 +79,8 @@ public class sendRequest {
 			return 0;
 		} else {
 			logger2.log(Status.FAIL,
-					"<b>Expected code:</b> " + expectedCode + "<br /><b>Actual response:</b> " + code + "<br />"
+					"<b>Faild reason: </b>Response Code is not equal to Expected Code.<br />"
+							+"<b>Expected code:</b> " + expectedCode + "<br /><b>Actual response:</b> " + code + "<br />"
 							+ "<b>Response time: </b> " + resp.getTime() + "<br /><b>Response Body: </b>"
 							+ resp.asString());
 			return -1;
